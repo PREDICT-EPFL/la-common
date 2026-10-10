@@ -22,14 +22,28 @@ All libraries are header-only except `main_control_common`.
 
 ## Usage
 
-The libraries are meant to be included in a source tree with `add_subdirectory`, for example as a git submodule, and are not installed as separate packages:
+The libraries are not installed as separate packages. A package that needs one includes it in its own source tree with `add_subdirectory`, so it is always built from the sources you are editing.
 
-```cmake
-add_subdirectory(path/to/la-common/mpc-control-common)
-target_link_libraries(my_target PUBLIC mpc_control_common)
+Add this repository as a single git submodule at the root of your project, and link each library you need into the `lib/` folder of the package that uses it. For example, a control package links `main-control-common` as a subfolder:
+
+```shell
+git submodule add https://github.com/jowaibel/la-common.git la-common
+
+# in the project root
+ln -s ../../../../la-common/main-control-common my-control-package/lib/my-control/lib/main-control-common
 ```
 
-The top-level `COLCON_IGNORE` file keeps [colcon](https://colcon.readthedocs.io/) from building them as standalone packages when this repository is placed inside a ROS 2 workspace.
+The package then uses the library like any subfolder:
+
+```cmake
+# my-control-package/lib/my-control/CMakeLists.txt
+add_subdirectory(lib/main-control-common)
+target_link_libraries(my_control PUBLIC main_control_common)
+```
+
+The link target is relative to the location of the link (here, four folders up is the project root), so it works wherever the project is cloned. Git stores symlinks as such, which works on Linux and macOS; on Windows, git needs symlink support enabled.
+
+The top-level `COLCON_IGNORE` file keeps [colcon](https://colcon.readthedocs.io/) from building the libraries as standalone packages when this repository is placed inside a ROS 2 workspace.
 
 ## Credits
 
