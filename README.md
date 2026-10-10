@@ -1,6 +1,6 @@
 # la-common
 
-Common C++ libraries shared by the packages of [racing-project-ros2](https://github.com/jowaibel/racing-project-ros2): real-time control of a mini race car, in simulation or on the real car.
+Common C++ libraries shared applied control projects: e.g., real-time control of a mini race car, in simulation or on the real car; flight simulation and control of an airborne wind energy system.
 
 ## Libraries
 
@@ -46,22 +46,9 @@ The top-level `COLCON_IGNORE` file keeps [colcon](https://colcon.readthedocs.io/
 
 ## Credits
 
-This project is developed by Johannes Waibel, Roland Schwan, and Colin N. Jones at the [Automatic Control Laboratory](https://www.epfl.ch/labs/la/) at [EPFL](https://www.epfl.ch/), Switzerland.
+This project is developed by Johannes Waibel at the [Automatic Control Laboratory](https://www.epfl.ch/labs/la/) at [EPFL](https://www.epfl.ch/), Switzerland.
 
 This work was supported by the Swiss National Science Foundation under the [NCCR Automation](https://nccr-automation.ch/) (grant agreement 51NF40_225155).
-
-## Citing
-
-If you use this code in scientific work, please cite the accompanying paper:
-
-```bibtex
-@INPROCEEDINGS{waibel2026laopt,
-  author={Waibel, Johannes and Schwan, Roland and Jones, Colin N.},
-  booktitle={2026 IEEE Conference on Control Technology and Applications (CCTA)},
-  title={{laOPT}: A Native {C++} Optimal Control Toolbox for High-Performance Implementations, and Application to Racing},
-  year={2026}
-}
-```
 
 ## License
 
