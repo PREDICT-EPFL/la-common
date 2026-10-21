@@ -20,11 +20,11 @@ if (NOT TARGET mpc_control_common)
 
     add_library(mpc_control_common INTERFACE)
     target_include_directories(mpc_control_common INTERFACE include)
-    target_link_libraries(mpc_control_common INTERFACE Eigen3::Eigen casadi)
+    target_link_libraries(mpc_control_common INTERFACE Eigen3::Eigen casadi::casadi)
 
     if (${WITH_CASADI})
         add_library(mpc_control_common_casadi INTERFACE)
         target_include_directories(mpc_control_common_casadi INTERFACE include_casadi)
-        target_link_libraries(mpc_control_common_casadi INTERFACE mpc_control_common Eigen3::Eigen casadi)
+        target_link_libraries(mpc_control_common_casadi INTERFACE mpc_control_common Eigen3::Eigen casadi::casadi)
     endif ()
 endif ()

@@ -29,7 +29,7 @@ if (NOT TARGET simulation_common)
         target_include_directories(simulation_common INTERFACE
                                    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include_casadi>
                                    $<INSTALL_INTERFACE:include>)
-        target_link_libraries(simulation_common INTERFACE casadi)
+        target_link_libraries(simulation_common INTERFACE casadi::casadi)
     endif ()
 
 endif ()

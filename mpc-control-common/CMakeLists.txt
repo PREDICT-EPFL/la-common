@@ -24,7 +24,7 @@ if (NOT TARGET mpc_control_common)
     target_link_libraries(mpc_control_common INTERFACE Eigen3::Eigen)
     if (${WITH_CASADI})
         find_package(casadi REQUIRED)
-        target_link_libraries(mpc_control_common INTERFACE casadi)
+        target_link_libraries(mpc_control_common INTERFACE casadi::casadi)
     endif ()
 
 #    add_executable(inverted_pendulum_test tests/inverted_pendulum_test.cpp)
