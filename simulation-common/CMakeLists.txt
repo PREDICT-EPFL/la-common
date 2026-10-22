@@ -16,12 +16,13 @@ if (NOT TARGET simulation_common)
     message("simulation_common WITH_CASADI: ${WITH_CASADI}")
 
     find_package(Eigen3 REQUIRED NO_MODULE) # This ensures Eigen3 is installed on the system. The target to link to is 'Eigen3::Eigen' afterwards.
+    find_package(Boost REQUIRED)
 
     add_library(simulation_common INTERFACE)
     target_include_directories(simulation_common INTERFACE
                                $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
                                $<INSTALL_INTERFACE:include>)
-    target_link_libraries(simulation_common INTERFACE Eigen3::Eigen)
+    target_link_libraries(simulation_common INTERFACE Eigen3::Eigen Boost::headers)
 
     if (${WITH_CASADI})
         find_package(Casadi REQUIRED) # This ensures Casadi is installed on the system. The target to link to is 'casadi' afterwards.
