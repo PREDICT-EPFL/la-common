@@ -22,7 +22,7 @@ if (NOT TARGET model_common)
     target_include_directories(model_common INTERFACE
                                $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
                                $<INSTALL_INTERFACE:include>)
-    target_link_libraries(model_common INTERFACE Eigen3::Eigen yaml-cpp)
+    target_link_libraries(model_common INTERFACE Eigen3::Eigen yaml-cpp::yaml-cpp)
 
     if (${WITH_CASADI})
         find_package(Casadi REQUIRED)
