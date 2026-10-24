@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cassert>
 #include <cmath>
+#include <cstdlib>
 
 #include <yaml-cpp/yaml.h>
 
@@ -50,6 +51,7 @@ inline double get_value(const YAML::Node &node, const std::string &name)
 
 inline bool get_as_double(const YAML::Node &node, const std::string &name, double &value_write)
 {
+    int count = 0;
     for (YAML::const_iterator it = node.begin(); it != node.end(); ++it)
     {
         std::string key = it->first.as<std::string>();
@@ -59,7 +61,7 @@ inline bool get_as_double(const YAML::Node &node, const std::string &name, doubl
                 if (key == name)
                 {
                     value_write = it->second.as<double>();
-                    return true;
+                    count++;
                 }
                 break;
             case YAML::NodeType::Map:
@@ -69,19 +71,20 @@ inline bool get_as_double(const YAML::Node &node, const std::string &name, doubl
                     if ((iter->first).as<std::string>() == name)
                     {
                         value_write = iter->second.as<double>();
-                        return true;
+                        count++;
                     }
                 }
                 break;
-            case YAML::NodeType::Null:
-                std::cout << "real lox \n";
-                break;
             default :
-                std::cout << "lox \n";
                 break;
         }
     }
-    return false; // Success / modified
+    if (count > 1)
+    {
+        std::cerr << "Param " << name << " is not unique in the YAML (" << count << " occurrences)\n";
+        exit(EXIT_FAILURE);
+    }
+    return count == 1;
 }
 
 } // namespace model_common

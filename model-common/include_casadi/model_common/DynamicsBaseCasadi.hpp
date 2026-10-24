@@ -2,6 +2,7 @@
 #define SRC_DYNAMICSBASECASADI_HPP
 
 #include <iostream>
+#include <cstdlib>
 #include <vector>
 
 #include <casadi/casadi.hpp>
@@ -276,7 +277,7 @@ protected:
             else
             {
                 std::cerr << "Param " << param_name << " could not be loaded\n";
-                assert(false);
+                exit(EXIT_FAILURE);
             }
         }
     }
