@@ -50,17 +50,17 @@ public:
                                           bool minimal_interface = false,
                                           bool print_function_signature = false) const
     {
-        if (output_mappings.find(map_name) != output_mappings.end())
+        if (output_mappings_.find(map_name) != output_mappings_.end())
         {
             /* Output exists under this name, create function for it */
-            return build_function(map_name, output_mappings.at(map_name), yaml_filepath, static_params,
+            return build_function(map_name, output_mappings_.at(map_name), yaml_filepath, static_params,
                                   const_params, opt_params, minimal_interface, print_function_signature);
         }
         else
         {
             std::cout << "Output '" << map_name << "' could not be found." << "\n";
             std::cout << "Available outputs are:\n";
-            for (const auto &output_mapping: output_mappings)
+            for (const auto &output_mapping: output_mappings_)
             {
                 std::cout << output_mapping.first << "\n";
             }
@@ -114,7 +114,7 @@ protected:
         casadi::SX x, u, p, x_dot, y;
     } sym_;
 
-    std::map<std::string, casadi::SX> output_mappings;
+    std::map<std::string, casadi::SX> output_mappings_;
 
     casadi::Function build_function(const std::string &name,
                                     const casadi::SX &sym_return,
