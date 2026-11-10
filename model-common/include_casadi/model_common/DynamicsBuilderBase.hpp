@@ -72,8 +72,8 @@ public:
                                                    const std::map<std::string, double> &static_params = {}) const
     {
         /*
-         * Numeric value of every model parameter (name in sym_.p) outside the graph: from static_params, otherwise
-         * from the YAML file (if one is given). Parameters that are found in neither are left out.
+         * Load params from YAML. If given, prioritize entries from static_params.
+         * Parameters that are found in neither are left out.
          */
         YAML::Node config;
         bool yaml_loaded = false;
