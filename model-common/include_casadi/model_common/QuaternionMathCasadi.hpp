@@ -9,9 +9,9 @@ namespace quatmath_casadi {
 using namespace casadi;
 
 /** quaternion arithmetic */
-SX T1quat(const SX &rotAng) { return SX::vertcat({cos(-rotAng / 2.0), sin(-rotAng / 2.0), 0, 0}); }
-SX T2quat(const SX &rotAng) { return SX::vertcat({cos(-rotAng / 2.0), 0, sin(-rotAng / 2.0), 0}); }
-SX T3quat(const SX &rotAng) { return SX::vertcat({cos(-rotAng / 2.0), 0, 0, sin(-rotAng / 2.0)}); }
+inline SX T1quat(const SX &rotAng) { return SX::vertcat({cos(-rotAng / 2.0), sin(-rotAng / 2.0), 0, 0}); }
+inline SX T2quat(const SX &rotAng) { return SX::vertcat({cos(-rotAng / 2.0), 0, sin(-rotAng / 2.0), 0}); }
+inline SX T3quat(const SX &rotAng) { return SX::vertcat({cos(-rotAng / 2.0), 0, 0, sin(-rotAng / 2.0)}); }
 
 template<typename sym_t>
 sym_t quat_multiply(const sym_t &q1, const sym_t &q2)
